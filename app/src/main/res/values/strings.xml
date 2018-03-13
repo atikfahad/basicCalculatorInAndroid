@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="view">0</string>
+    <string name="view2">0</string>
+    <string name="calcZero">0</string>
+    <string name="calcDot">.</string>
+    <string name="calcOne">1</string>
+    <string name="calcTwo">2</string>
+    <string name="calcThree">3</string>
+    <string name="calcFour">4</string>
+    <string name="calcFive">5</string>
+    <string name="calcSix">6</string>
+    <string name="calcSeven">7</string>
+    <string name="calcEight">8</string>
+    <string name="calcNine">9</string>
+    <string name="calcPlus">+</string>
+    <string name="calcMinus">-</string>
+    <string name="calcMultiplication">*</string>
+    <string name="calcDivision">/</string>
+    <string name="calcCross">X</string>
+    <string name="calcCancel">C</string>
+    <string name="calcEqual">=</string>
+    <string name="mPlus">M+</string>
+    <string name="mMinus">M-</string>
+    <string name="history">H</string>
+
+
+    <dimen name="font_size1">50sp</dimen>
+    <dimen name="font_size2">40sp</dimen>
+</resources>
