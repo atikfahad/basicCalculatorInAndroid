@@ -23,6 +23,7 @@
     <string name="mPlus">M+</string>
     <string name="mMinus">M-</string>
     <string name="history">H</string>
+    <string name="back">Back</string>
 
 
     <dimen name="font_size1">50sp</dimen>

@@ -1,10 +1,13 @@
 package com.rfbuildersltdbd.basiccalculator;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.content.SharedPreferences.Editor;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnEqual, btnDot, btnZero;
@@ -17,11 +20,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static double memoryResult = 0;
     int checkOperation = 0;
     String fromView;
+    static int historyCount = 0;
+    Editor editor;
+    SharedPreferences pref;
+    String historySingle = "";
+    boolean resultClicked = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        pref = getApplicationContext().getSharedPreferences("myPref", 0);
+        editor = pref.edit();
 
         btn1 = (Button) findViewById(R.id.button_id1);
         btn2 = (Button) findViewById(R.id.button_id2);
@@ -48,7 +60,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCross = (Button) findViewById(R.id.button_idCross);
 
         btnMplus = (Button) findViewById(R.id.button_idMplus);
-        btnMinus = (Button) findViewById(R.id.button_idMminus);
+        btnMminus = (Button) findViewById(R.id.button_idMminus);
+
+
+        btnHistory = (Button) findViewById(R.id.button_idHistory);
+
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+                //String countValue = ;
+                intent.putExtra("historyCount", Integer.toString(historyCount));
+                //intent.putExtra("historyCount", historyCount);
+                //String test = "Something";
+                //showResult.append((Integer.toString( historyCount)));
+                for(int i = historyCount; i > 0; i--){
+                    intent.putExtra(i + ".", pref.getString(i + ".", null));
+                    //test.concat(pref.getString(historyCount + ".", null));
+                    //showResult.append(pref.getString(historyCount + ".", "Nothing is here"));
+
+                }/*
+                for(int i = 0; i > historyCount; i--){
+                    intent.putExtra(historyCount + ".", pref.getString(historyCount + ".", null));
+                    //test.concat(pref.getString(historyCount + ".", null));
+                    showResult.append(pref.getString(historyCount + ".", "Nothing is here"));
+
+                } */
+                //getResources().getString("s");
+                //editor.putString("10.", "nothing");
+                //editor.commit();
+                //test.concat(pref.getString( "10.", "Nothing Defined"));
+                //showResult.setText(pref.getString( "1.", "Nothing Defined"));
+                //intent.putExtra("1.", pref.getString("1.", null));
+                startActivity(intent);
+                finish();
+            }
+        });
 
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
@@ -73,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-        btnMinus.setOnClickListener(new View.OnClickListener() {
+        btnMminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fromView = showCalculation.getText().toString();
@@ -160,9 +207,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         value2 = Double.parseDouble(fromView);
                         double result = value1 + value2;
                         showCalculation.setText(String.valueOf(result));
-                        //showCalculation.setText(((chars) result));
-                        showResult.setText(value1 + " + " + value2 +" = " + result);
+                        historySingle = value1 + " + " + value2 +" = " + result;
+                        showResult.setText(historySingle);
                         memoryResult = result;
+                        editor.putString(++historyCount + ".", historySingle);
+                        editor.commit();
+                    //    showResult.setText(pref.getString("1.", null));
+                        resultClicked = true;
                         break;
                     }
                     case 2: {
@@ -170,8 +221,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         value2 = Double.parseDouble(fromView);
                         double result = value1 - value2;
                         showCalculation.setText(String.valueOf(result));
-                        showResult.setText(value1 + " - " + value2 +" = " + result);
+                        historySingle = value1 + " - " + value2 +" = " + result;
+                        showResult.setText(historySingle);
+                        editor.putString(++historyCount + ".", historySingle);
+                        editor.commit();
                         memoryResult = result;
+                     //   showCalculation.setText(pref.getString("1.", null));
+                        resultClicked = true;
                         break;
                     }
                     case 3: {
@@ -179,8 +235,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         value2 = Double.parseDouble(fromView);
                         double result = value1 * value2;
                         showCalculation.setText(String.valueOf(result));
-                        showResult.setText(value1 + " * " + value2 +" = " + result);
+                        historySingle = value1 + " * " + value2 +" = " + result;
+                        showResult.setText(historySingle);
+                        editor.putString(++historyCount + ".", historySingle);
+                        editor.commit();
                         memoryResult = result;
+                        resultClicked = true;
                         break;
                     }
                     case 4: {
@@ -192,8 +252,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         double result = value1 / value2;
                         showCalculation.setText(String.valueOf(result));
-                        showResult.setText(value1 + " / " + value2 +" = " + result);
+                        historySingle = value1 + " / " + value2 +" = " + result;
+                        showResult.setText(historySingle);
+                        editor.putString(++historyCount + ".", historySingle);
+                        editor.commit();
                         memoryResult = result;
+                        resultClicked = true;
                         break;
                     }
                     default:
@@ -219,6 +283,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        if(resultClicked){
+            showCalculation.setText("0");
+            resultClicked = false;
+        }
         String fromView = showCalculation.getText().toString();
         double check = Double.parseDouble(fromView);
         Button b = (Button) view;
