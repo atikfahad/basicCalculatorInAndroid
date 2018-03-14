@@ -4,18 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:weightSum="1"
     tools:context="com.rfbuildersltdbd.basiccalculator.HistoryActivity">
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:weightSum="1">
         <TextView
             android:id="@+id/text_view_id3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/view"
+            android:textSize="@dimen/font_size3"
             android:layout_weight="1"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
         <Button
             android:id="@+id/button_idBack"
             android:layout_width="wrap_content"

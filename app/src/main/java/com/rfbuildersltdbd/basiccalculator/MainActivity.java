@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dotTest){
+                if(dotTest && !resultClicked){
                 showCalculation.append(".");
                 dotTest = false;
                 }
@@ -262,6 +262,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                     default:
                         showCalculation.setText("0");
+                        resultClicked = true;
+                        checkOperation = 0;
                         break;
 
                 }
@@ -276,6 +278,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 value1 = 0;
                 dotTest = true;
                 showResult.setText("0");
+                checkOperation = 0;
             }
         });
 

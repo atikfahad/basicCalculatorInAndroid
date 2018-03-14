@@ -26,6 +26,7 @@
     <string name="back">Back</string>
 
 
-    <dimen name="font_size1">50sp</dimen>
-    <dimen name="font_size2">40sp</dimen>
+    <dimen name="font_size1">25sp</dimen>
+    <dimen name="font_size2">20sp</dimen>
+    <dimen name="font_size3">20sp</dimen>
 </resources>
