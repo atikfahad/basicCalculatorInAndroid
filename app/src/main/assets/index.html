@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Calculator</title>
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <!-- Font Awesome -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+
+    <style>
+        body{
+	color: #abc8a2;
+	background-color: #403543;
+	height: 100vh;
+	width: 100vw;
+	font-family: 'Orbitron', sans-serif;
+}
+.row{
+	text-align: center;
+	height: 15vh;
+}
+#display{
+	color: white;
+	background-color: #332c37!important;
+	width: 100%;
+	direction: rtl;
+	text-align: right;
+	cursor: no-drop;
+}
+.row div{
+	width: 25%;
+	padding: 5%;
+}
+.row div:hover{
+	border-color: #00c851!important;
+    background-color: #645467!important;
+    color: white!important;
+    cursor: default;
+}
+.row div:nth-child(4){
+	color: #e6686e;
+}
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row" style="height: 25vh">
+        <div id="display">
+            Dummy Value
+        </div>
+    </div>
+    <div class="row">
+        <div >C</div>
+        <div >%</div>
+        <div >+/-</div>
+        <div >/</div>
+    </div><div class="row">
+    <div >7</div>
+    <div >9</div>
+    <div >8</div>
+    <div >*</div>
+</div>
+    <div class="row">
+        <div >4</div>
+        <div >6</div>
+        <div >5</div>
+        <div >-</div>
+    </div>
+    <div class="row">
+        <div >1</div>
+        <div >3</div>
+        <div >2</div>
+        <div >+</div>
+    </div>
+    <div class="row">
+        <div style="width: 50%" >0</div>
+        <div >.</div>
+        <div style="color: #e6686e;" >=</div>
+    </div>
+</div>
+</body>
+</html>

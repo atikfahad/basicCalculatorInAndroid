@@ -1,0 +1,32 @@
+body{
+	color: #abc8a2;
+	background-color: #403543;
+	height: 100vh;
+	width: 100vw;
+	font-family: 'Orbitron', sans-serif;
+}
+.row{
+	text-align: center;
+	height: 15vh;
+}
+#display{
+	color: white;
+	background-color: #332c37!important;
+	width: 100%;
+	direction: rtl;
+	text-align: right;
+	cursor: no-drop;
+}
+.row div{
+	width: 25%;
+	padding: 5%;
+}
+.row div:focus{
+	border-color: #00c851!important;
+    background-color: #645467!important;
+    color: white!important;
+    cursor: default;
+}
+.row div:nth-child(4){
+	color: #e6686e;
+}
