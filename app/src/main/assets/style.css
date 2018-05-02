@@ -17,16 +17,16 @@ body{
 	text-align: right;
 	cursor: no-drop;
 }
-.row div{
+.row input{
 	width: 25%;
 	padding: 5%;
 }
-.row div:focus{
+.row input:focus{
 	border-color: #00c851!important;
     background-color: #645467!important;
     color: white!important;
     cursor: default;
 }
-.row div:nth-child(4){
+.row input:nth-child(4){
 	color: #e6686e;
 }

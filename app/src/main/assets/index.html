@@ -18,77 +18,77 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+    <link rel="stylesheet" href="file:///android_asset/style.css">
 
-    <style>
-        body{
-	color: #abc8a2;
-	background-color: #403543;
-	height: 100vh;
-	width: 100vw;
-	font-family: 'Orbitron', sans-serif;
-}
-.row{
-	text-align: center;
-	height: 15vh;
-}
-#display{
-	color: white;
-	background-color: #332c37!important;
-	width: 100%;
-	direction: rtl;
-	text-align: right;
-	cursor: no-drop;
-}
-.row div{
-	width: 25%;
-	padding: 5%;
-}
-.row div:hover{
-	border-color: #00c851!important;
-    background-color: #645467!important;
-    color: white!important;
-    cursor: default;
-}
-.row div:nth-child(4){
-	color: #e6686e;
-}
-    </style>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row" style="height: 25vh">
-        <div id="display">
-            Dummy Value
-        </div>
+        <input type="text" value="" id="res" name="res" disabled class="btn btn-primary" style="margin:0; width:100%; font-size:1.5em; text-align:right;"/>
+        <input style="display:none" id="res2" value=""/>
     </div>
     <div class="row">
-        <div >C</div>
-        <div >%</div>
-        <div >+/-</div>
-        <div >/</div>
+        <input  class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="C" onClick="reset()" />
+        <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="M+" onClick="addOperator('M-')" />
+        <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="M-" onClick="addOperator('M')" />
+        <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="/" onClick="addOperator('/')" />
     </div><div class="row">
-    <div >7</div>
-    <div >9</div>
-    <div >8</div>
-    <div >*</div>
+    <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="7" onClick="addNum('7')" />
+    <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="8" onClick="addNum('8')" />
+    <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="9" onClick="addNum('9')" />
+    <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="*" onClick="addOperator('*')" />
 </div>
     <div class="row">
-        <div >4</div>
-        <div >6</div>
-        <div >5</div>
-        <div >-</div>
+        <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="4" onClick="addNum('4')" />
+        <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="5" onClick="addNum('5')" />
+        <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="6" onClick="addNum('6')" />
+        <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="-" onClick="addOperator('-')" />
     </div>
     <div class="row">
-        <div >1</div>
-        <div >3</div>
-        <div >2</div>
-        <div >+</div>
+        <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="1" onClick="addNum('1')" />
+        <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="2" onClick="addNum('2')" />
+        <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="3" onClick="addNum('3')" />
+        <input class="btn btn-outline-info waves-effect" style="margin:0" type="button" value="+" onClick="addOperator('+')" />
     </div>
     <div class="row">
-        <div style="width: 50%" >0</div>
-        <div >.</div>
-        <div style="color: #e6686e;" >=</div>
+        <input class="btn btn-outline-info waves-effect" type="button" value="0" onClick="addNum('0')" style="width: 50%; margin:0" />
+        <input class="btn btn-outline-info waves-effect" type="button" value="." onClick="addNum('.')" style="margin:0" />
+        <input class="btn btn-outline-danger waves-effect"  type="button" value="=" onClick="getResult()" style="color: #e6686e; margin:0" />
     </div>
 </div>
+<script type="text/javascript">
+    function addNum(num) {
+            var display = document.getElementById("res");
+            if(display.value.length == 1 && num == 0){
+                if(display.value == 0)
+                    display.value = 0;
+                 else
+                    display.value += num;
+            }
+            else{
+                    var result = Android.addNum(num);
+                    if(display.value == 0)
+                        display.value = result;
+                    else
+                        display.value += result;
+
+            }
+
+        }
+        function addOperator(opr) {
+           var test = Android.addOperator(document.getElementById('res').value, opr);
+			var display = document.getElementById("res");
+			document.getElementById("res2").value = display.value;
+			display.value = test;
+        }
+        function getResult(){
+            var result = Android.getResult(document.getElementById('res2').value);
+            document.getElementById('res').value = result;
+
+        }
+        function reset(){
+            document.getElementById('res').value = Android.reset();
+        }
+</script>
 </body>
 </html>
